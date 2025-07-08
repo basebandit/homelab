@@ -27,3 +27,15 @@ variable "cloudflare_tunnel_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "kubeconfig_path" {
+  description = "Path to your kubeconfig file"
+  type        = string
+  default     = "~/.kube/config"
+}
+
+variable "kubeconfig_context" {
+  description = "Name of your kubernetes config context"
+  type        = string
+  default     = "kubernetes-admin@kubernetes"
+}
