@@ -10,7 +10,6 @@ It is built with **repeatability and portability** in mind, easily reproduce the
 
 - ✅ Cloudflare Zero Trust Tunnel (Terraform managed)
 - ✅ Helm-deployed `cloudflared` connector
-- ✅ Kubernetes secret for tunnel credentials
 - ✅ Terraform configuration for all components
 - ⏳ ExternalDNS (coming soon)
 
@@ -20,17 +19,15 @@ It is built with **repeatability and portability** in mind, easily reproduce the
 
 ```bash
 .
-├── helm
-│   └── cloudflare-tunnel-values.yaml
 ├── LICENSE
 ├── package-lock.json
 ├── package.json
 ├── README.md
 └── terraform
+    ├── helm
+    │   └── cloudflared-remote-tunnel-values.yaml.tmpl
     ├── helm.tf
-    ├── kubernetes.tf
     ├── provider.tf
-    ├── terraform.tfstate
     ├── tunnel.tf
     └── variables.tf
 ```
@@ -60,10 +57,9 @@ cd homelab
 
 # Set environment variables or use terraform.tfvars
 export TF_VAR_cloudflare_account_api_token="your_cf_account_token_here"
+export TF_VAR_cloudflare_tunnel_token="your_cf_tunnel_token_here"
 export TF_VAR_cloudflare_zone_id="your_cf_zone_id_here"
 export TF_VAR_cloudflare_account_id="your_cf_account_id_here"
-export TF_VAR_cloudflare_account_email="your_cf_account_email_here"
-export TF_VAR_cloudflare_tunnel_secret="your_cf_tunnel_secret_here"
 
 # Initialize and apply
 terraform init
